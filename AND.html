@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="en-us">
+    <meta charset="utf-8">
+    <title>Home</title>
+    <style>
+        h1 {
+            font-family: sans-serif;
+            font-size: 30px;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 100px auto;
+        }
+        form {text-align: center;}
+        input{padding: 12px;}
+
+        #result{
+            font-size: 22px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: green;
+            text-align: center;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Find AND Siblings</h1>
+    <form id="form">
+        <input type="text" name="" id="text"> <br><br>
+        <input type="submit" value="check">
+
+    </form>
+    <p id="result"></p>
+
+    <script>
+      
+        
+            var frm = document.getElementById("form");
+            frm.onsubmit = function (){
+                var num =document.getElementById("text").value;
+                var result= document.getElementById("result");
+
+                let a = num.split("").filter(element => !isNaN(element)).filter(element => /\S/.test(element));
+                let array = a.map(i => Number(i));
+                array.sort((a, b) => b - a); 
+                
+            }
+            
+    
+          
+            
+          
+           
+          
+        
+
+        
+
+    </script>
+</body>
+
+</html>
