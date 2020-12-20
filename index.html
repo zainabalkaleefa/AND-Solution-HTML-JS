@@ -13,10 +13,16 @@
             text-align: center;
             margin: 100px auto;
         }
-        form {text-align: center;}
-        input{padding: 12px;}
 
-        #result{
+        form {
+            text-align: center;
+        }
+
+        input {
+            padding: 12px;
+        }
+
+        #result {
             font-size: 22px;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             color: green;
@@ -34,62 +40,43 @@
 
     </form>
     <p id="result"></p>
-
     <script>
-      
-        
-            var frm = document.getElementById("form");
-            frm.onsubmit = function (){
-                var num =document.getElementById("text").value;
-                var result= document.getElementById("result");
+        var frm = document.getElementById("form");
+        frm.onsubmit = function () {
+            var num = document.getElementById("text").value;
+            var result = document.getElementById("result");
 
-                let a = num.split("").filter(element => !isNaN(element)).filter(element => /\S/.test(element));
-                let array = a.map(i => Number(i));
-                array.sort((a, b) => b - a); 
-                if (array === undefined || array.length == 0) {   
-                throw new Error('String does not contain numbers, Please enter a text that includes at least one number');
-                } 
-                else {
-                    var final = [];
-                     used = Array(array.length); 
-                     data = Array(array.length); 
-
-                     (function backtracking(pos) {
-
-                        if (pos == array.length) 
-                        { 
-                            final.push(data.slice().join()); 
-                        }
-
-                        for (let i = 0; i < array.length; ++i) if (!used[i]) {   
-                            used[i] = true;    
-                          data[pos] = array[i];    
-                          backtracking(pos + 1);   
-                            used[i] = false;        
-                             }
-                    })(0);
-
-                // var uniqueArray = Array.from(new Set(final)); 
-                var uniqueArray= final.map(str => str.replace(/,/g, '')); 
-                var uniqueArray1=Array.from(new Set(uniqueArray));
-             
-
-                }
-            
-
-                result.innerHTML= uniqueArray1;
-                return false;
+            let a = num.split("").filter(element => !isNaN(element)).filter(element => /\S/.test(element));
+            let array = a.map(i => Number(i));
+            array.sort((a, b) => b - a);
+            if (array === undefined || array.length == 0) {
+                alert('String does not contain numbers, Please enter a text that includes at least one number');
             }
-            
-    
-          
-            
-          
-           
-          
-        
+            else {
+                var final = [];
+                used = Array(array.length);
+                data = Array(array.length);
 
-        
+                (function backtracking(pos) {
+
+                    if (pos == array.length) {
+                        final.push(data.slice().join());
+                    }
+
+                    for (let i = 0; i < array.length; ++i) if (!used[i]) {
+                        used[i] = true;
+                        data[pos] = array[i];
+                        backtracking(pos + 1);
+                        used[i] = false;
+                    }
+                })(0);
+
+                var uniqueArray = final.map(str => str.replace(/,/g, ''));
+                var uniqueArray1 = Array.from(new Set(uniqueArray));
+            }
+            result.innerHTML = uniqueArray1;
+            return false;
+        }
 
     </script>
 </body>
