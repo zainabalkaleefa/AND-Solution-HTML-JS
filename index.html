@@ -46,7 +46,39 @@
                 let a = num.split("").filter(element => !isNaN(element)).filter(element => /\S/.test(element));
                 let array = a.map(i => Number(i));
                 array.sort((a, b) => b - a); 
-                
+                if (array === undefined || array.length == 0) {   
+                throw new Error('String does not contain numbers, Please enter a text that includes at least one number');
+                } 
+                else {
+                    var final = [];
+                     used = Array(array.length); 
+                     data = Array(array.length); 
+
+                     (function backtracking(pos) {
+
+                        if (pos == array.length) 
+                        { 
+                            final.push(data.slice().join()); 
+                        }
+
+                        for (let i = 0; i < array.length; ++i) if (!used[i]) {   
+                            used[i] = true;    
+                          data[pos] = array[i];    
+                          backtracking(pos + 1);   
+                            used[i] = false;        
+                             }
+                    })(0);
+
+                // var uniqueArray = Array.from(new Set(final)); 
+                var uniqueArray= final.map(str => str.replace(/,/g, '')); 
+                var uniqueArray1=Array.from(new Set(uniqueArray));
+             
+
+                }
+            
+
+                result.innerHTML= uniqueArray1;
+                return false;
             }
             
     
